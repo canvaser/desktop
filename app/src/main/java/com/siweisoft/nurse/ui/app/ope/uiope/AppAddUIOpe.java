@@ -21,6 +21,9 @@ public class AppAddUIOpe extends BaseNurseUIOpe{
     public AppAddUIOpe(Context context, View containerView) {
         super(context, containerView);
         getBackTV().setVisibility(View.VISIBLE);
+        getBackTV().setText("返回");
+        getRightTV().setVisibility(View.VISIBLE);
+        getRightTV().setText("确定");
     }
 
     public EditText getInputET() {

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.widget.TextView;
 
 import com.siweisoft.app.R;
 import com.siweisoft.base.ui.id.BaseID;
@@ -15,7 +16,10 @@ import com.siweisoft.base.ui.ope.BaseNurseOpes;
 import com.siweisoft.constant.ValueConstant;
 import com.siweisoft.nurse.ui.app.adapter.AppAdapter;
 import com.siweisoft.nurse.ui.app.bean.dbbean.AppDBBean;
+import com.siweisoft.nurse.ui.app.bean.dbbean.AppGroupDBBean;
 import com.siweisoft.nurse.ui.app.ope.daope.AppDAOpe;
+import com.siweisoft.nurse.ui.app.ope.dbope.AppsDBOpe;
+import com.siweisoft.nurse.ui.app.ope.dbope.AppsGroupDBOpe;
 import com.siweisoft.nurse.ui.app.ope.uiope.AppUIOpe;
 import com.siweisoft.nurse.ui.base.fragment.BaseNurseFragWithoutTitle;
 import com.siweisoft.nurse.util.fragment.FragManager;
@@ -31,7 +35,7 @@ import butterknife.OnClick;
  * Created by ${viwmox} on 2016-12-27.
  */
 
-public class AppFrag extends BaseNurseFragWithoutTitle<AppUIOpe,BaseNetOpe,BaseDBOpe,AppDAOpe>
+public class AppFrag extends BaseNurseFragWithoutTitle<AppUIOpe,BaseNetOpe,AppsDBOpe,AppDAOpe>
         implements OnAppItemLongClickListener,OnAppItemClickListener{
 
 
@@ -46,9 +50,9 @@ public class AppFrag extends BaseNurseFragWithoutTitle<AppUIOpe,BaseNetOpe,BaseD
     }
 
     @Override
-    public BaseNurseOpes<AppUIOpe, BaseNetOpe, BaseDBOpe, AppDAOpe> getOpe() {
+    public BaseNurseOpes<AppUIOpe, BaseNetOpe, AppsDBOpe, AppDAOpe> getOpe() {
         if(baseNurseOpes==null){
-            baseNurseOpes = new BaseNurseOpes(new AppUIOpe(activity,getView()),new BaseNetOpe(activity),null,new AppDAOpe(activity));
+            baseNurseOpes = new BaseNurseOpes(new AppUIOpe(activity,getView()),new BaseNetOpe(activity),new AppsDBOpe(activity,new AppDBBean()),new AppDAOpe(activity));
         }
         return baseNurseOpes;
     }
@@ -60,11 +64,20 @@ public class AppFrag extends BaseNurseFragWithoutTitle<AppUIOpe,BaseNetOpe,BaseD
 
     @Override
     public void onAppItemLongClick(View view, int position) {
-        BottomDialogMenuView bottomDialogMenuView = new BottomDialogMenuView(activity,new String[]{"卸载","删除","添加组","加入组"});
+        final AppDBBean appDBBean = (AppDBBean) view.getTag(R.id.data);
+        BottomDialogMenuView bottomDialogMenuView = new BottomDialogMenuView(activity,getOpe().getBaseDAOpe().getList(activity));
         SheetDialogUtil.getInstance().showBottomSheet(activity, bottomDialogMenuView, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                TextView tv = (TextView) v;
+                String str = tv.getText().toString();
+                if(str.startsWith("添加到")){
+                    String ss = str.substring(3,str.length());
+                    getOpe().getBaseDBOpe().add(ss,appDBBean.getAppName(),appDBBean.getPackageName());
+                    AppsFrag appsFrag = (AppsFrag) FragManager.getInstance().getFragMaps().get(2).get(FragManager.getInstance().getFragMaps().get(index).size()-1);
+                    appsFrag.getData();
+                }
+                SheetDialogUtil.getInstance().dismess();
             }
         });
     }

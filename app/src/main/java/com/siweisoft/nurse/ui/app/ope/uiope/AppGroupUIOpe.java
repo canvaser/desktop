@@ -1,6 +1,7 @@
 package com.siweisoft.nurse.ui.app.ope.uiope;
 
 import android.content.Context;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -29,6 +30,7 @@ public class AppGroupUIOpe extends BaseNurseUIOpe{
     }
 
     public void initList(ArrayList<AppGroupDBBean> data){
+        recyclerView.setLayoutManager(new GridLayoutManager(context,4));
         recyclerView.setAdapter(new AppGroupAdapter(context,data));
     }
 

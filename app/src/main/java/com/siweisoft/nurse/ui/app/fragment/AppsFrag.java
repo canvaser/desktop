@@ -31,12 +31,7 @@ public class AppsFrag extends BaseNurseFrag<AppsUIOpe,AppsNetOpe,BaseDBOpe,AppsD
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getOpe().getBaseDAOpe().getOrQuery(new OnNetFinishWithObjInter() {
-            @Override
-            public void onNetFinish(Object o) {
-                getOpe().getBaseNurseUIOpe().initList(getOpe().getBaseDAOpe().getAppDABean());
-            }
-        });
+        getData();
         AppReqBean baseReqBean =new AppReqBean();
         baseReqBean.setCredential("EBF8B1C43666A369B5E323D04C058F81");
         baseReqBean.setIdentifier("18965477896");
@@ -49,6 +44,16 @@ public class AppsFrag extends BaseNurseFrag<AppsUIOpe,AppsNetOpe,BaseDBOpe,AppsD
             }
         });
     }
+
+    public void getData(){
+        getOpe().getBaseDAOpe().getOrQuery(new OnNetFinishWithObjInter() {
+            @Override
+            public void onNetFinish(Object o) {
+                getOpe().getBaseNurseUIOpe().initList(getOpe().getBaseDAOpe().getAppDABean());
+            }
+        });
+    }
+
 
     @Override
     public int getContainView() {

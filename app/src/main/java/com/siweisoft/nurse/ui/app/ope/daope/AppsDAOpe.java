@@ -74,6 +74,11 @@ public class AppsDAOpe extends BaseDAOpe{
                                 appsDBOpe.add(appDBBeen);
                                 appDABean.getData().put("系统", appsDBOpe.get("系统"));
                                 appDABean.getData().put("用户", appsDBOpe.get("用户"));
+                                ArrayList<AppGroupDBBean> list = appsGroupDBOpe.get();
+                                for(int i=0;i<list.size();i++){
+                                    appDABean.getData().put(list.get(i).getName(),appsDBOpe.get(list.get(i).getName()));
+                                }
+                                initIcon();
                                 objInter.onNetFinish(appDBBeen);
                             }
                         });
@@ -83,6 +88,10 @@ public class AppsDAOpe extends BaseDAOpe{
         }else{
             appDABean.getData().put("系统", appsDBOpe.get("系统"));
             appDABean.getData().put("用户", appsDBOpe.get("用户"));
+            ArrayList<AppGroupDBBean> list = appsGroupDBOpe.get();
+            for(int i=0;i<list.size();i++){
+                appDABean.getData().put(list.get(i).getName(),appsDBOpe.get(list.get(i).getName()));
+            }
             initIcon();
             objInter.onNetFinish(appDABean);
         }

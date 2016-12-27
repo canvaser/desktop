@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.siweisoft.base.ui.ope.BaseDAOpe;
 import com.siweisoft.nurse.ui.app.bean.dbbean.AppDBBean;
+import com.siweisoft.nurse.ui.app.bean.dbbean.AppGroupDBBean;
+import com.siweisoft.nurse.ui.app.ope.dbope.AppsGroupDBOpe;
 
 import java.util.ArrayList;
 
@@ -25,5 +27,17 @@ public class AppDAOpe extends BaseDAOpe{
 
     public void setData(ArrayList<AppDBBean> data) {
         this.data = data;
+    }
+
+    public ArrayList<String> getList(Context context){
+        ArrayList<AppGroupDBBean> list = new AppsGroupDBOpe(context,new AppGroupDBBean()).get();
+        ArrayList<String> str = new ArrayList<>();
+        for(int i=0;i<list.size();i++){
+            str.add("添加到"+list.get(i).getName());
+        }
+        str.add("卸载");
+        str.add("删除");
+        str.add("添加组");
+        return str;
     }
 }
