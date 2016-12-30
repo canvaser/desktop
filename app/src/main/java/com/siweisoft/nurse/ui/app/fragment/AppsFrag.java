@@ -49,7 +49,7 @@ public class AppsFrag extends BaseNurseFrag<AppsUIOpe,AppsNetOpe,BaseDBOpe,AppsD
         getOpe().getBaseDAOpe().getOrQuery(new OnNetFinishWithObjInter() {
             @Override
             public void onNetFinish(Object o) {
-                getOpe().getBaseNurseUIOpe().initList(getOpe().getBaseDAOpe().getAppDABean());
+                getOpe().getBaseNurseUIOpe().initList(getOpe().getBaseDAOpe().getAppDABean(),fragment);
             }
         });
     }

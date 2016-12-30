@@ -26,10 +26,13 @@ public class BaseFrg extends Fragment{
 
     protected Handler handler=new Handler();
 
+    protected  Fragment fragment;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         layoutInflater=LayoutInflater.from(getActivity());
+        fragment = this;
     }
 
 
