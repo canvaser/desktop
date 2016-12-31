@@ -14,6 +14,7 @@ import com.j256.ormlite.table.TableUtils;
 import com.siweisoft.network.bean.db.NetCacheDBBean;
 import com.siweisoft.nurse.ui.app.bean.dbbean.AppDBBean;
 import com.siweisoft.nurse.ui.app.bean.dbbean.AppGroupDBBean;
+import com.siweisoft.nurse.ui.setting.bean.dbbean.BackUIDBBean;
 import com.siweisoft.util.LogUtil;
 import com.siweisoft.view.weekview.dayview.bean.PlanTipBean;
 
@@ -27,7 +28,7 @@ public  class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private Map<String, Dao> daos = new HashMap<String, Dao>();
 
     private DatabaseHelper(Context context){
-        super(context, TABLE_NAME, null, 4);
+        super(context, TABLE_NAME, null, 5);
     }
 
     /**
@@ -60,14 +61,14 @@ public  class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase database,ConnectionSource connectionSource, int oldVersion, int newVersion){
-//        try{
-//            LogUtil.E("onUpgrade");
-//          //TableUtils.dropTable(connectionSource,PlanTipBean.class,true);
-//            TableUtils.createTable(connectionSource, AppDBBean.class);
-//            TableUtils.createTable(connectionSource, AppGroupDBBean.class);
-//        } catch (SQLException e){
-//            e.printStackTrace();
-//        }
+        try{
+            LogUtil.E("onUpgrade");
+          //TableUtils.dropTable(connectionSource,PlanTipBean.class,true);
+           // TableUtils.createTable(connectionSource, AppDBBean.class);
+            TableUtils.createTable(connectionSource, BackUIDBBean.class);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     public synchronized Dao getDao(Class clazz) throws SQLException{
