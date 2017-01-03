@@ -1,4 +1,4 @@
-# Install script for directory: D:/model/desktop/app
+# Install script for directory: D:/project/desktop/app
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "D:/model/desktop/app/.externalNativeBuild/cmake/release/mips/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "D:/project/desktop/app/.externalNativeBuild/cmake/release/mips/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

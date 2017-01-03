@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 
 //import com.siweisoft.imga.constant.ValueConstant;
 
+import android.support.v4.app.Fragment;
 import com.siweisoft.constant.ValueConstant;
 
 import java.io.File;
@@ -104,6 +105,13 @@ public class IntentUtil {
         getImage.addCategory(Intent. CATEGORY_OPENABLE);
         getImage.setType( "image/*");
         activity.startActivityForResult(getImage, requstCode);
+    }
+
+    public void photoShowFromphone(Fragment fragment, int requstCode) {
+        Intent getImage = new Intent(Intent. ACTION_GET_CONTENT);
+        getImage.addCategory(Intent. CATEGORY_OPENABLE);
+        getImage.setType( "image/*");
+        fragment.startActivityForResult(getImage, requstCode);
     }
 
     
