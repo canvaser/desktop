@@ -17,6 +17,8 @@ public class AppDAOpe extends BaseDAOpe{
 
     ArrayList<AppDBBean> data;
 
+    AppDBBean item;
+
     public AppDAOpe(Context context) {
         super(context);
     }
@@ -35,9 +37,18 @@ public class AppDAOpe extends BaseDAOpe{
         for(int i=0;i<list.size();i++){
             str.add("添加到"+list.get(i).getName());
         }
+        str.add("换图");
         str.add("卸载");
         str.add("删除");
         str.add("添加组");
         return str;
+    }
+
+    public AppDBBean getItem() {
+        return item;
+    }
+
+    public void setItem(AppDBBean item) {
+        this.item = item;
     }
 }

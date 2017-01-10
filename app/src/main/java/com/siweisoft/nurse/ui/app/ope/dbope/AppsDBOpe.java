@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.j256.ormlite.stmt.DeleteBuilder;
 import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.stmt.UpdateBuilder;
 import com.j256.ormlite.stmt.Where;
 import com.siweisoft.base.ui.ope.BaseDBOpe;
 import com.siweisoft.nurse.ui.app.bean.dbbean.AppDBBean;
@@ -77,6 +78,18 @@ public class AppsDBOpe extends BaseDBOpe<AppDBBean>{
         try {
             where.and(where.eq(AppDBBean.GROUPNAME,groupName),where.eq(AppDBBean.APPNAME,appName));
             deleteBuilder.delete();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateIcon(long id,String iconPath){
+        UpdateBuilder updateBuilder = daoOpe.updateBuilder();
+        Where where = updateBuilder.where();
+        try {
+            where.eq(AppDBBean.ID,id);
+            updateBuilder.updateColumnValue(AppDBBean.ICONPATH,iconPath);
+            updateBuilder.update();
         } catch (SQLException e) {
             e.printStackTrace();
         }

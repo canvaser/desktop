@@ -1,5 +1,6 @@
 package com.siweisoft.nurse.ui.app.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -63,7 +64,7 @@ public class AppFrag extends BaseNurseFragWithoutTitle<AppUIOpe,BaseNetOpe,AppsD
     }
 
     @Override
-    public void onAppItemLongClick(View view, int position) {
+    public void onAppItemLongClick(View view, final int position) {
         final AppDBBean appDBBean = (AppDBBean) view.getTag(R.id.data);
         BottomDialogMenuView bottomDialogMenuView = new BottomDialogMenuView(activity,getOpe().getBaseDAOpe().getList(activity));
         SheetDialogUtil.getInstance().showBottomSheet(activity, bottomDialogMenuView, new View.OnClickListener() {
@@ -77,6 +78,12 @@ public class AppFrag extends BaseNurseFragWithoutTitle<AppUIOpe,BaseNetOpe,AppsD
                     AppsFrag appsFrag = (AppsFrag) FragManager.getInstance().getFragMaps().get(2).get(FragManager.getInstance().getFragMaps().get(index).size()-1);
                     appsFrag.getData();
                 }
+                switch (str){
+                    case "换图":
+                        IntentUtil.getInstance().photoShowFromphone(fragment, ValueConstant.CODE_REQUSET);
+                        getOpe().getBaseDAOpe().setItem(getOpe().getBaseDAOpe().getData().get(position));
+                        break;
+                }
                 SheetDialogUtil.getInstance().dismess();
             }
         });
@@ -85,6 +92,22 @@ public class AppFrag extends BaseNurseFragWithoutTitle<AppUIOpe,BaseNetOpe,AppsD
     @Override
     public void onAppItemClick(View view, int position) {
         IntentUtil.getInstance().IntentTo(activity,((AppAdapter)getOpe().getBaseNurseUIOpe().getRecyclerView().getAdapter()).getData().get(position).getPackageName());
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case ValueConstant.CODE_REQUSET:
+                if(data==null || data.getData()==null){
+                    return ;
+                }
+                AppDBBean appDBBean = getOpe().getBaseDAOpe().getItem();
+                getOpe().getBaseDBOpe().updateIcon(appDBBean.getId(),data.getDataString());
+                AppsFrag appsFrag = (AppsFrag) FragManager.getInstance().getFragMaps().get(2).get(FragManager.getInstance().getFragMaps().get(index).size()-1);
+                appsFrag.getData();
+                break;
+        }
     }
 
 }

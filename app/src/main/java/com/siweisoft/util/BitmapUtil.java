@@ -54,6 +54,14 @@ public class BitmapUtil {
         return true;
     }
 
+    public void setBg(Context context,ImageView imageView,int id,String url){
+        if(!NullUtil.isStrEmpty(url)){
+            setBg(context,imageView,url);
+        }else{
+            setBg(context,imageView,id);
+        }
+    }
+
     public boolean setBg(Context context,ImageView imageView,String uri){
         if (uri == null) {
             return false;
@@ -71,6 +79,26 @@ public class BitmapUtil {
         LogUtil.E("setBg:"+uri);
         return true;
     }
+
+
+    public boolean setBgXY(Context context,ImageView imageView,String uri){
+        if (uri == null) {
+            return false;
+        }
+        if(uri.startsWith("http://") || uri.startsWith("https://")){
+
+        }
+//      x.image().bind(imageView,uri.toString(),imageOptions);
+        Glide.clear(imageView);
+        if(uri.toLowerCase().endsWith(".gif")){
+            Glide.with(context).load(uri).asGif().centerCrop().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
+        }else{
+            Glide.with(context).load(uri).asBitmap().centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
+        }
+        LogUtil.E("setBg:"+uri);
+        return true;
+    }
+
 
     public boolean setBg(Context context, final ImageView imageView, String uri, final OnFinishListener onFinishListener){
         if (uri == null) {

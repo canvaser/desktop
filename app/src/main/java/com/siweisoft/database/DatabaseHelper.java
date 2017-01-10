@@ -29,7 +29,7 @@ public  class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private Map<String, Dao> daos = new HashMap<String, Dao>();
 
     private DatabaseHelper(Context context){
-        super(context, TABLE_NAME, null, 6);
+        super(context, TABLE_NAME, null, 7);
     }
 
     /**
@@ -65,9 +65,9 @@ public  class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void onUpgrade(SQLiteDatabase database,ConnectionSource connectionSource, int oldVersion, int newVersion){
         try{
             LogUtil.E("onUpgrade");
-//            TableUtils.dropTable(connectionSource,PlanTipBean.class,true);
+            TableUtils.dropTable(connectionSource,AppDBBean.class,true);
 //            TableUtils.createTable(connectionSource, AppDBBean.class);
-            TableUtils.createTable(connectionSource, DayDBBean.class);
+            TableUtils.createTable(connectionSource, AppDBBean.class);
 
         } catch (SQLException e){
             e.printStackTrace();

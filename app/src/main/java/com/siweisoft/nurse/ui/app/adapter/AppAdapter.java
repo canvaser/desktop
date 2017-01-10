@@ -15,6 +15,7 @@ import com.siweisoft.base.ui.interf.view.OnAppItemLongClickListener;
 import com.siweisoft.nurse.ui.app.bean.dbbean.AppDBBean;
 import com.siweisoft.nurse.ui.app.bean.uibean.AppUIBean;
 import com.siweisoft.util.BitmapUtil;
+import com.siweisoft.util.NullUtil;
 
 import java.util.ArrayList;
 
@@ -47,7 +48,11 @@ public class AppAdapter extends AppRecycleAdapter implements View.OnLongClickLis
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         AppUIBean appUIBean = (AppUIBean) holder;
         appUIBean.getAppTV().setText(data.get(position).getAppName());
-        appUIBean.getAppIV().setImageDrawable(data.get(position).getIcon());
+        if(!NullUtil.isStrEmpty(data.get(position).getIconPath())){
+            BitmapUtil.getInstance().setBgXY(context,appUIBean.getAppIV(),data.get(position).getIconPath());
+        }else{
+            appUIBean.getAppIV().setImageDrawable(data.get(position).getIcon());
+        }
         appUIBean.getRootV().setOnClickListener(this);
         appUIBean.getRootV().setTag(R.id.position,position);
         appUIBean.getRootV().setTag(R.id.data,data.get(position));

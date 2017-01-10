@@ -25,6 +25,10 @@ public class AppDBBean extends BaseDbBean{
     @DatabaseField(columnName = PACKAGENAME)
     private String packageName;
 
+    public static final String ICONPATH ="iconPath";
+    @DatabaseField(columnName = ICONPATH)
+    private String iconPath;
+
     private Drawable icon;
 
     public AppDBBean() {
@@ -66,5 +70,13 @@ public class AppDBBean extends BaseDbBean{
 
     public void setIcon(Drawable icon) {
         this.icon = icon;
+    }
+
+    public String getIconPath() {
+        return iconPath;
+    }
+
+    public void setIconPath(String iconPath) {
+        this.iconPath = iconPath;
     }
 }
