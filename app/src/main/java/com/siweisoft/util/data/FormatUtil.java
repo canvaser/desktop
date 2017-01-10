@@ -1,5 +1,7 @@
 package com.siweisoft.util.data;
 
+import java.util.Calendar;
+
 /**
  * Created by ${viwmox} on 2016-05-05.
  */
@@ -62,4 +64,21 @@ public class FormatUtil {
         }
         return hh+":"+mm;
     }
+
+    public long getTime(int h,int m){
+        return h*3600+m*60;
+    }
+
+    public long getNowHHMMTime(){
+        int h = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        int m = Calendar.getInstance().get(Calendar.MINUTE);
+        return h*3600+m*60;
+    }
+
+    public String toNowHHMMTime(long time){
+        int h = (int) (time/3600);
+        int m = (int) ((time%3600)/60);
+        return getHHMM(h,m);
+    }
+
 }

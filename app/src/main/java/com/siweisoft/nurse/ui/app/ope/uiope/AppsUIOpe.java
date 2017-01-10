@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.siweisoft.app.R;
 import com.siweisoft.base.ui.activity.BaseActivity;
+import com.siweisoft.base.ui.fragment.BaseFrg;
 import com.siweisoft.constant.ValueConstant;
 import com.siweisoft.nurse.ui.app.adapter.AppsAdapter;
 import com.siweisoft.nurse.ui.app.bean.dabean.AppDABean;
@@ -44,7 +45,7 @@ public class AppsUIOpe extends BaseNurseUIOpe{
 
 
     public void initList(AppDABean appDABean, Fragment frag){
-        ArrayList<Fragment> fragments = new ArrayList<>();
+        ArrayList<BaseFrg> fragments = new ArrayList<>();
         String[] keys= new String[appDABean.getData().keySet().size()];
         keys = appDABean.getData().keySet().toArray(keys);
         for(int i=0;i<appDABean.getData().size();i++){

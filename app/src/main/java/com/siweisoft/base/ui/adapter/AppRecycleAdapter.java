@@ -20,4 +20,6 @@ public abstract  class AppRecycleAdapter<T extends RecyclerView.ViewHolder> exte
     }
 
 
+
+
 }

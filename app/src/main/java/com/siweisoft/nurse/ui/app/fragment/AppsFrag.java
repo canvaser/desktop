@@ -32,17 +32,6 @@ public class AppsFrag extends BaseNurseFrag<AppsUIOpe,AppsNetOpe,BaseDBOpe,AppsD
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getData();
-        AppReqBean baseReqBean =new AppReqBean();
-        baseReqBean.setCredential("EBF8B1C43666A369B5E323D04C058F81");
-        baseReqBean.setIdentifier("18965477896");
-        baseReqBean.setIdentityType("1");
-        baseReqBean.setUName("");
-        getOpe().getBaseNetOpe().onNetLoadData(activity, "TCUser/LoginUser", baseReqBean, new OnNetWorkReqAdapter(activity) {
-            @Override
-            public void onNetWorkResult(boolean success, Object o) {
-
-            }
-        });
     }
 
     public void getData(){

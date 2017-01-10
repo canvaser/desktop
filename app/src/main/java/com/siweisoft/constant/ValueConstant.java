@@ -49,6 +49,8 @@ public class ValueConstant {
 
     public static final String DATA_DATA="DATA_DATA";
 
+    public static final String DATA_TITLE="DATA_TITLE";
+
     public static final String DATA_DATA2="DATA_DATA2";
 
     public static final String DATA_INTENT2="DATA_INTENT2";

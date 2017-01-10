@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.siweisoft.base.ui.adapter.AppPagerAdapter;
+import com.siweisoft.base.ui.fragment.BaseFrg;
+import com.siweisoft.constant.ValueConstant;
 
 import java.util.ArrayList;
 
@@ -14,7 +16,12 @@ import java.util.ArrayList;
 
 public class DayAdapter extends AppPagerAdapter{
 
-    public DayAdapter(FragmentManager fm, Context context, ArrayList<Fragment> fragments) {
+    public DayAdapter(FragmentManager fm, Context context, ArrayList<BaseFrg> fragments) {
         super(fm, context, fragments);
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return fragments.get(position).getArguments().getString(ValueConstant.DATA_TITLE);
     }
 }

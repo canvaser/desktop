@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
+import com.siweisoft.base.ui.fragment.BaseFrg;
+
 import java.util.ArrayList;
 
 /**
@@ -11,9 +13,9 @@ import java.util.ArrayList;
  */
 public class AppPagerAdapter extends AppBasePagerAdapter{
 
-    ArrayList<Fragment> fragments;
+    protected  ArrayList<BaseFrg> fragments;
 
-    public AppPagerAdapter(FragmentManager fm, Context context, ArrayList<Fragment> fragments) {
+    public AppPagerAdapter(FragmentManager fm, Context context, ArrayList<BaseFrg> fragments) {
         super(fm, context);
         this.fragments = fragments;
     }

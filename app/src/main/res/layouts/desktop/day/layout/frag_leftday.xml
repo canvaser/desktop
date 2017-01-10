@@ -2,12 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:text="1"
+    <com.siweisoft.view.other.AppMaterialRefreshLayout
+        android:id="@+id/refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
 <android.support.v7.widget.RecyclerView
     android:id="@+id/recycle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"/>
+    </com.siweisoft.view.other.AppMaterialRefreshLayout>
 </LinearLayout>

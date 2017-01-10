@@ -14,7 +14,7 @@ public class AppThread extends Thread{
 
     public boolean pause = true;
 
-    public long sleepTime = 6000;
+    public long sleepTime = 60000;
 
     private static OnNetFinishWithObjInter o;
 

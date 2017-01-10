@@ -16,5 +16,4 @@ public abstract class AppBasePagerAdapter extends FragmentStatePagerAdapter {
         super(fm);
         this.context = context;
     }
-
 }

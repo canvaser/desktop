@@ -4,7 +4,10 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
+import com.siweisoft.app.R;
 import com.siweisoft.base.ui.bean.uibean.BaseUIBean;
+
+import butterknife.BindView;
 
 /**
  * Created by ${viwmox} on 2017-01-03.
@@ -12,9 +15,21 @@ import com.siweisoft.base.ui.bean.uibean.BaseUIBean;
 
 public class LeftDayUIBean extends BaseUIBean{
 
+    @BindView(R.id.tv_time)
+    TextView timeTV;
 
+    @BindView(R.id.tv_content)
+    TextView contentTV;
 
     public LeftDayUIBean(Context context, View convertView) {
         super(context, convertView);
+    }
+
+    public TextView getContentTV() {
+        return contentTV;
+    }
+
+    public TextView getTimeTV() {
+        return timeTV;
     }
 }
