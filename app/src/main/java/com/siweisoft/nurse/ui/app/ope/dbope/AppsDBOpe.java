@@ -83,6 +83,17 @@ public class AppsDBOpe extends BaseDBOpe<AppDBBean>{
         }
     }
 
+    public void delete(long id){
+        DeleteBuilder deleteBuilder = daoOpe.deleteBuilder();
+        Where where = deleteBuilder.where();
+        try {
+            where.eq(AppDBBean.ID,id);
+            deleteBuilder.delete();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void updateIcon(long id,String iconPath){
         UpdateBuilder updateBuilder = daoOpe.updateBuilder();
         Where where = updateBuilder.where();

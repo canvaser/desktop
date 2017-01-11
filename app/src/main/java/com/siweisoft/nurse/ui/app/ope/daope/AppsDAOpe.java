@@ -11,6 +11,7 @@ import com.siweisoft.nurse.ui.app.bean.dbbean.AppDBBean;
 import com.siweisoft.nurse.ui.app.bean.dbbean.AppGroupDBBean;
 import com.siweisoft.nurse.ui.app.ope.dbope.AppsDBOpe;
 import com.siweisoft.nurse.ui.app.ope.dbope.AppsGroupDBOpe;
+import com.siweisoft.util.LogUtil;
 import com.siweisoft.util.PackageUtil;
 
 import java.util.ArrayList;
@@ -91,6 +92,9 @@ public class AppsDAOpe extends BaseDAOpe{
             ArrayList<AppGroupDBBean> list = appsGroupDBOpe.get();
             for(int i=0;i<list.size();i++){
                 appDABean.getData().put(list.get(i).getName(),appsDBOpe.get(list.get(i).getName()));
+                for(int j=0;j<appDABean.getData().get(list.get(i).getName()).size();j++){
+                    LogUtil.E(appDABean.getData().get(list.get(i).getName()).get(j).getGroupName()+":"+appDABean.getData().get(list.get(i).getName()).get(j).getAppName());
+                }
             }
             initIcon();
             objInter.onNetFinish(appDABean);

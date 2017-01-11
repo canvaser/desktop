@@ -25,6 +25,7 @@ import com.siweisoft.nurse.ui.app.ope.uiope.AppUIOpe;
 import com.siweisoft.nurse.ui.base.fragment.BaseNurseFragWithoutTitle;
 import com.siweisoft.nurse.util.fragment.FragManager;
 import com.siweisoft.util.IntentUtil;
+import com.siweisoft.util.LogUtil;
 import com.siweisoft.util.SheetDialogUtil;
 import com.siweisoft.view.bottomdialogmenuview.BottomDialogMenuView;
 
@@ -82,6 +83,11 @@ public class AppFrag extends BaseNurseFragWithoutTitle<AppUIOpe,BaseNetOpe,AppsD
                     case "换图":
                         IntentUtil.getInstance().photoShowFromphone(fragment, ValueConstant.CODE_REQUSET);
                         getOpe().getBaseDAOpe().setItem(getOpe().getBaseDAOpe().getData().get(position));
+                        break;
+                    case "删除":
+                        getOpe().getBaseDBOpe().delete(getOpe().getBaseDAOpe().getData().get(position).getId());
+                        AppsFrag appsFrag = (AppsFrag) FragManager.getInstance().getFragMaps().get(2).get(FragManager.getInstance().getFragMaps().get(index).size()-1);
+                        appsFrag.getData();
                         break;
                 }
                 SheetDialogUtil.getInstance().dismess();
