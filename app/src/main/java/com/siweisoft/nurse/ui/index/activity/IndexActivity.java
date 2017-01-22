@@ -2,6 +2,7 @@ package com.siweisoft.nurse.ui.index.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -17,6 +18,7 @@ import com.siweisoft.nurse.ui.index.ope.HomeUIOpe;
 import com.siweisoft.nurse.util.fragment.FragManager;
 import com.siweisoft.util.LogUtil;
 import com.siweisoft.util.SPUtil;
+import com.siweisoft.util.ScreenUtil;
 import com.siweisoft.util.uuzuche.lib_zxing.activity.CaptureActivity;
 
 import butterknife.OnClick;
@@ -34,25 +36,26 @@ public class IndexActivity extends BaseUIWithOutTitleActivity implements OnAppIt
     HomeNetOpe homeNetOpe;
 
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onStart() {
+        super.onStart();
+        if(homeUIOpe==null){
+            homeUIOpe = new HomeUIOpe(activity,getRootVG());
+            homeDataOpe= new HomeDataOpe(activity);
+            homeNetOpe= new HomeNetOpe(activity);
 
-        homeUIOpe = new HomeUIOpe(activity,getRootVG());
-        homeDataOpe= new HomeDataOpe(activity);
-        homeNetOpe= new HomeNetOpe(activity);
-
-        homeUIOpe.getHomeBottomView().setOnAppItemSelectListener(this);
-        homeUIOpe.getHomeBottomView().setOnAppItemLongClickListener(this);
-        homeNetOpe.getAdditionList(new OnNetWorkReqAdapter(activity) {
-            @Override
-            public void onNetWorkResult(boolean success, Object o) {
-                if(success){
-                    SPUtil.getInstance().saveStr(ValueConstant.ADDITION_INFO,o.toString());
+            homeUIOpe.getHomeBottomView().setOnAppItemSelectListener(this);
+            homeUIOpe.getHomeBottomView().setOnAppItemLongClickListener(this);
+            homeNetOpe.getAdditionList(new OnNetWorkReqAdapter(activity) {
+                @Override
+                public void onNetWorkResult(boolean success, Object o) {
+                    if(success){
+                        SPUtil.getInstance().saveStr(ValueConstant.ADDITION_INFO,o.toString());
+                    }
                 }
-            }
-        });
+            });
+            ScreenUtil.getInstance().getScreenSize(activity);
+        }
     }
 
     @Override

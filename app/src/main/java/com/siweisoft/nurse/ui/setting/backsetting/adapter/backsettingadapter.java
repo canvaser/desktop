@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import com.siweisoft.app.R;
 import com.siweisoft.base.ui.adapter.AppRecycleAdapter;
 import com.siweisoft.base.ui.interf.view.OnAppItemClickListener;
-import com.siweisoft.nurse.ui.setting.bean.dbbean.BackUIDBBean;
-import com.siweisoft.nurse.ui.setting.bean.uibean.BackUIUIBean;
+import com.siweisoft.nurse.ui.setting.setting.bean.dbbean.BackUIDBBean;
+import com.siweisoft.nurse.ui.setting.setting.bean.uibean.BackUIUIBean;
 import com.siweisoft.util.StringUtil;
 
 import java.util.ArrayList;

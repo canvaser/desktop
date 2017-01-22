@@ -41,6 +41,7 @@ public class AppDAOpe extends BaseDAOpe{
         str.add("卸载");
         str.add("删除");
         str.add("添加组");
+        str.add("刷新");
         return str;
     }
 

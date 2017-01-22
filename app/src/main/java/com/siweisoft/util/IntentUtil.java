@@ -114,6 +114,13 @@ public class IntentUtil {
         fragment.startActivityForResult(getImage, requstCode);
     }
 
+    public void musicShowFromphone(Fragment fragment, int requstCode) {
+        Intent getImage = new Intent(Intent. ACTION_GET_CONTENT);
+        getImage.addCategory(Intent. CATEGORY_OPENABLE);
+        getImage.setType( "audio/*");
+        fragment.startActivityForResult(getImage, requstCode);
+    }
+
     
 
     public static Uri getUri() {

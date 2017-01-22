@@ -1,4 +1,4 @@
-package com.siweisoft.nurse.ui.setting.fragment;
+package com.siweisoft.nurse.ui.setting.setting.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,7 +11,7 @@ import com.siweisoft.base.ui.ope.BaseNetOpe;
 import com.siweisoft.base.ui.ope.BaseNurseOpes;
 import com.siweisoft.nurse.ui.base.fragment.BaseNurseFrag;
 import com.siweisoft.nurse.ui.setting.backsetting.fragment.BackSettingFrag;
-import com.siweisoft.nurse.ui.setting.ope.uiope.SettingUIOpe;
+import com.siweisoft.nurse.ui.setting.setting.ope.uiope.SettingUIOpe;
 import com.siweisoft.nurse.util.fragment.FragManager;
 
 /**

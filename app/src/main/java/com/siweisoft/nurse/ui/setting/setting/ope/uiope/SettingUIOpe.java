@@ -1,4 +1,4 @@
-package com.siweisoft.nurse.ui.setting.ope.uiope;
+package com.siweisoft.nurse.ui.setting.setting.ope.uiope;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

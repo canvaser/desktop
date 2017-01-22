@@ -1,4 +1,4 @@
-package com.siweisoft.nurse.ui.setting.bean.dbbean;
+package com.siweisoft.nurse.ui.setting.setting.bean.dbbean;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;

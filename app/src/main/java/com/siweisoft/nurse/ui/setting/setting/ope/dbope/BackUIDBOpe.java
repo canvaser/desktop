@@ -1,13 +1,12 @@
-package com.siweisoft.nurse.ui.setting.ope.dbope;
+package com.siweisoft.nurse.ui.setting.setting.ope.dbope;
 
 import android.content.Context;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.UpdateBuilder;
 import com.j256.ormlite.stmt.Where;
 import com.siweisoft.base.ui.ope.BaseDBOpe;
-import com.siweisoft.nurse.ui.setting.bean.dbbean.BackUIDBBean;
+import com.siweisoft.nurse.ui.setting.setting.bean.dbbean.BackUIDBBean;
 
-import java.sql.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
 

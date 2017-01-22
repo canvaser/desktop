@@ -46,7 +46,7 @@ public class SheetDialogUtil {
             ViewGroup group = (ViewGroup) viewGroup.getChildAt(i);
             if(group.getChildAt(0) instanceof TextView){
                 TextView textView = (TextView) group.getChildAt(0);
-//                LogUtil.E(textView.getText());
+                textView.setTag(R.id.data,textView.getText().toString());
                 textView.setOnClickListener(onClickListener);
             }
         }

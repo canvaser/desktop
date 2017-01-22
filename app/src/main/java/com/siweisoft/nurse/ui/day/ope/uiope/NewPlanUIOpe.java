@@ -1,6 +1,7 @@
 package com.siweisoft.nurse.ui.day.ope.uiope;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatCheckBox;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -26,6 +27,16 @@ public class NewPlanUIOpe extends BaseNurseUIOpe{
 
     @BindView(R.id.et_content)
     EditText contentET;
+
+    @BindView(R.id.tv_musicurl)
+    TextView musicTV;
+
+    @BindView(R.id.tv_selectmusic)
+    TextView selectTV;
+
+    @BindView(R.id.cb_music)
+    AppCompatCheckBox switchCB;
+
 
 
     public NewPlanUIOpe(Context context, View containerView) {
@@ -66,5 +77,17 @@ public class NewPlanUIOpe extends BaseNurseUIOpe{
 
     public void setStartTV(TextView startTV) {
         this.startTV = startTV;
+    }
+
+    public TextView getMusicTV() {
+        return musicTV;
+    }
+
+    public TextView getSelectTV() {
+        return selectTV;
+    }
+
+    public AppCompatCheckBox getSwitchCB() {
+        return switchCB;
     }
 }

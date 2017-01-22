@@ -2,7 +2,7 @@ package com.siweisoft.nurse.ui.setting.backsetting.ope.daope;
 
 import android.content.Context;
 import com.siweisoft.base.ui.ope.BaseDAOpe;
-import com.siweisoft.nurse.ui.setting.bean.dbbean.BackUIDBBean;
+import com.siweisoft.nurse.ui.setting.setting.bean.dbbean.BackUIDBBean;
 
 /**
  * Created by summer on 2016/12/31 14:48.

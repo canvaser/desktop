@@ -24,13 +24,17 @@ import com.siweisoft.nurse.ui.day.bean.dbbean.DayDBBean;
 import com.siweisoft.nurse.ui.day.ope.dbope.DayAddDBOpe;
 import com.siweisoft.nurse.ui.day.ope.uiope.DayUIOpe;
 import com.siweisoft.nurse.util.fragment.FragManager;
+import com.siweisoft.util.LogUtil;
+import com.siweisoft.util.NullUtil;
 import com.siweisoft.util.VibratorUtil;
 import com.siweisoft.util.data.FormatUtil;
+import com.siweisoft.util.media.VoiceUtil;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import butterknife.OnLongClick;
 
 /**
  * Created by ${viwmox} on 2016-12-21.
@@ -77,13 +81,25 @@ public class DayFrag extends BaseNurseFrag<DayUIOpe,BaseNetOpe,DayAddDBOpe,BaseD
         getOpe().getBaseNurseUIOpe().getMidTV().setText(getOpe().getBaseNurseUIOpe().getViewPager().getAdapter().getPageTitle(position));
     }
 
-    @OnClick(BaseID.ID_MID)
+    @OnClick({BaseID.ID_MID})
     public void onClick(View v){
         switch (v.getId()){
             case BaseID.ID_MID:
                 FragManager.getInstance().startFragmentForResult(getFragmentManager(),index,new DayAddFrag(),new Bundle(), ValueConstant.CODE_REQUSET);
                 break;
+
         }
+    }
+
+    @OnLongClick({BaseID.ID_MID})
+    public boolean onLongClick(View v){
+        switch (v.getId()){
+            case BaseID.ID_MID:
+                LogUtil.E("longclick");
+                VoiceUtil.getInstance().stop();
+                break;
+        }
+        return true;
     }
 
     @Override
@@ -100,6 +116,10 @@ public class DayFrag extends BaseNurseFrag<DayUIOpe,BaseNetOpe,DayAddDBOpe,BaseD
             ArrayList<DayDBBean> ll =  getOpe().getBaseDBOpe().getRightNow(FormatUtil.getInstance().getNowHHMMTime());
             if(ll.size()>0){
                 VibratorUtil.getInstance().call(activity);
+                LogUtil.E(ll.get(0).toString());
+                if(ll.get(0).isPlayMusic()&& !NullUtil.isStrEmpty(ll.get(0).getMusicUrl())){
+                    VoiceUtil.getInstance().play(ll.get(0).getMusicUrl());
+                }
                 getOpe().getBaseNurseUIOpe().init(fragment);
             }
         }

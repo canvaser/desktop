@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.telephony.TelephonyManager;
 
+import com.siweisoft.exception.exception.CrashHander;
 import com.siweisoft.network.NetWork;
 import com.siweisoft.nurse.nursevalue.DataValue;
 import com.siweisoft.nurse.ui.index.activity.IndexActivity;
@@ -62,7 +63,7 @@ public class AppAplication extends Application{
     }
 
     private void initCrash(){
-
+        CrashHander.getInstance().init(this);
     }
 
 

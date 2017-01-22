@@ -1,16 +1,19 @@
 package com.siweisoft.nurse.ui.day.ope.uiope;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.siweisoft.app.R;
+import com.siweisoft.constant.ValueConstant;
 import com.siweisoft.nurse.ui.base.ope.BaseNurseUIOpe;
 import com.siweisoft.nurse.ui.day.adapter.LeftDayAdapter;
 import com.siweisoft.nurse.ui.day.bean.dbbean.DayDBBean;
 import com.siweisoft.view.ItemDecoration.MyItemDecoration;
+import com.siweisoft.view.ItemDecoration.MyItemDecoration2;
 import com.siweisoft.view.other.AppMaterialRefreshLayout;
 import com.siweisoft.view.refreshlayout.MaterialRefreshLayout;
 import com.siweisoft.view.refreshlayout.MaterialRefreshListener;
@@ -45,7 +48,6 @@ public class LeftDayUIOpe extends BaseNurseUIOpe{
 
     public void initList(ArrayList<DayDBBean> data){
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.addItemDecoration(new MyItemDecoration(context,2));
         recyclerView.setAdapter(new LeftDayAdapter(context,data));
     }
 

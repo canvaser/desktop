@@ -1,6 +1,7 @@
 package com.siweisoft.nurse.ui.app.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
@@ -49,8 +50,10 @@ public class AppAdapter extends AppRecycleAdapter implements View.OnLongClickLis
         AppUIBean appUIBean = (AppUIBean) holder;
         appUIBean.getAppTV().setText(data.get(position).getAppName());
         if(!NullUtil.isStrEmpty(data.get(position).getIconPath())){
+            appUIBean.getImageRL().setBackgroundColor(Color.BLACK);
             BitmapUtil.getInstance().setBgXY(context,appUIBean.getAppIV(),data.get(position).getIconPath());
         }else{
+            appUIBean.getImageRL().setBackgroundColor(Color.TRANSPARENT);
             appUIBean.getAppIV().setImageDrawable(data.get(position).getIcon());
         }
         appUIBean.getRootV().setOnClickListener(this);

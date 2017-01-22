@@ -8,12 +8,11 @@ import android.view.ViewGroup;
 
 import android.widget.ImageView;
 import com.siweisoft.app.R;
-import com.siweisoft.base.ui.ope.BaseNurseOpes;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import com.siweisoft.nurse.ui.setting.bean.dbbean.BackUIDBBean;
-import com.siweisoft.nurse.ui.setting.ope.dbope.BackUIDBOpe;
+import com.siweisoft.nurse.ui.setting.setting.bean.dbbean.BackUIDBBean;
+import com.siweisoft.nurse.ui.setting.setting.ope.dbope.BackUIDBOpe;
 import com.siweisoft.util.BitmapUtil;
 
 /**

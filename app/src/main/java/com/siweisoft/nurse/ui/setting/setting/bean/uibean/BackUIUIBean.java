@@ -1,4 +1,4 @@
-package com.siweisoft.nurse.ui.setting.bean.uibean;
+package com.siweisoft.nurse.ui.setting.setting.bean.uibean;
 
 import android.content.Context;
 import android.view.View;

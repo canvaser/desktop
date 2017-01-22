@@ -8,7 +8,7 @@ import butterknife.BindView;
 import com.siweisoft.app.R;
 import com.siweisoft.nurse.ui.base.ope.BaseNurseUIOpe;
 import com.siweisoft.nurse.ui.setting.backsetting.adapter.Backsettingadapter;
-import com.siweisoft.nurse.ui.setting.bean.dbbean.BackUIDBBean;
+import com.siweisoft.nurse.ui.setting.setting.bean.dbbean.BackUIDBBean;
 
 import java.util.ArrayList;
 

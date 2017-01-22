@@ -27,6 +27,7 @@ public class VoiceUtil {
             if(mp.isPlaying()){
                 mp.pause();
             }
+            mp.stop();
             mp=null;
         }
         mp=new MediaPlayer();
@@ -42,6 +43,13 @@ public class VoiceUtil {
     public void pause(){
         if(mp!=null && mp.isPlaying()){
             mp.pause();
+        }
+    }
+
+    public void stop(){
+        pause();
+        if(mp!=null){
+            mp.stop();
         }
     }
 

@@ -1,13 +1,28 @@
 package com.siweisoft.exception.exception;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Environment;
 import android.os.Looper;
 import android.widget.Toast;
 
 import com.siweisoft.aplication.AppAplication;
 import com.siweisoft.base.ui.activity.BaseActivity;
+import com.siweisoft.nurse.ui.index.activity.IndexActivity;
+import com.siweisoft.nurse.ui.setting.welcome.activity.WelcomeActivity;
 import com.siweisoft.util.LogUtil;
+import com.siweisoft.util.file.FileUtil;
+import com.siweisoft.view.charting.utils.FileUtils;
 
+import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -69,11 +84,11 @@ public class CrashHander implements Thread.UncaughtExceptionHandler {
         } else {
             uncaughtExceptionHandler.uncaughtException(thread, ex);
         }
-//        Intent intent = new Intent(context, IndexActivity.class);
+//        Intent intent = new Intent(context, WelcomeActivity.class);
 //        PendingIntent pendingIntent = PendingIntent.getActivity(context,0,intent,PendingIntent.FLAG_CANCEL_CURRENT);
 //        AlarmManager alarmManager = (AlarmManager) appAplication.getSystemService(Context.ALARM_SERVICE);
 //        alarmManager.set(AlarmManager.RTC,System.currentTimeMillis()+500,pendingIntent);
-        android.os.Process.killProcess(android.os.Process.myPid());
+//        android.os.Process.killProcess(android.os.Process.myPid());
     }
 
     private String print(Throwable ex){
@@ -92,8 +107,37 @@ public class CrashHander implements Thread.UncaughtExceptionHandler {
         return result;
     }
 
-    public void saveInfo(Throwable ex,String result){
-
+    public static void saveInfo(Throwable ex,String result){
+        File file = new File(Environment.getExternalStorageDirectory().getPath()+"/desktop");
+        if(!file.exists()){
+            file.mkdirs();
+        }
+        File f = new File(file,"crash.txt");
+        if(!f.exists()){
+            try {
+                f.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        BufferedWriter  bufferedWriter=null;
+        try {
+            bufferedWriter = new BufferedWriter(new FileWriter(f));
+            bufferedWriter.newLine();
+            bufferedWriter.write(result);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if(bufferedWriter!=null){
+                try {
+                    bufferedWriter.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     private boolean showException() {

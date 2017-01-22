@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.siweisoft.app.R;
+import com.siweisoft.base.ui.id.BaseID;
 import com.siweisoft.base.ui.interf.view.OnAppItemLongClickListener;
 import com.siweisoft.base.ui.ope.BaseDAOpe;
 import com.siweisoft.base.ui.ope.BaseDBOpe;
@@ -26,11 +27,14 @@ import com.siweisoft.util.LogUtil;
 import com.siweisoft.util.SheetDialogUtil;
 import com.siweisoft.util.VibratorUtil;
 import com.siweisoft.util.data.FormatUtil;
+import com.siweisoft.util.media.VoiceUtil;
 import com.siweisoft.view.bottomdialogmenuview.BottomDialogMenuView;
 import com.siweisoft.view.refreshlayout.MaterialRefreshLayout;
 import com.siweisoft.view.refreshlayout.MaterialRefreshListener;
 
 import java.util.ArrayList;
+
+import butterknife.OnLongClick;
 
 /**
  * Created by ${viwmox} on 2016-12-30.
@@ -70,6 +74,7 @@ public class MidDayFrag extends BaseNurseFragWithoutTitle<MidDayUIOpe,BaseNetOpe
     public int getContainView() {
         return R.layout.frag_midday;
     }
+
 
     @Override
     public BaseNurseOpes<MidDayUIOpe, BaseNetOpe, DayAddDBOpe, BaseDAOpe> getOpe() {

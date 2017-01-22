@@ -11,13 +11,11 @@ import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-import com.siweisoft.network.bean.db.NetCacheDBBean;
 import com.siweisoft.nurse.ui.app.bean.dbbean.AppDBBean;
 import com.siweisoft.nurse.ui.app.bean.dbbean.AppGroupDBBean;
 import com.siweisoft.nurse.ui.day.bean.dbbean.DayDBBean;
-import com.siweisoft.nurse.ui.setting.bean.dbbean.BackUIDBBean;
+import com.siweisoft.nurse.ui.setting.setting.bean.dbbean.BackUIDBBean;
 import com.siweisoft.util.LogUtil;
-import com.siweisoft.view.weekview.dayview.bean.PlanTipBean;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -29,7 +27,7 @@ public  class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private Map<String, Dao> daos = new HashMap<String, Dao>();
 
     private DatabaseHelper(Context context){
-        super(context, TABLE_NAME, null, 7);
+        super(context, TABLE_NAME, null, 8);
     }
 
     /**
@@ -65,9 +63,9 @@ public  class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void onUpgrade(SQLiteDatabase database,ConnectionSource connectionSource, int oldVersion, int newVersion){
         try{
             LogUtil.E("onUpgrade");
-            TableUtils.dropTable(connectionSource,AppDBBean.class,true);
+            TableUtils.dropTable(connectionSource,DayDBBean.class,true);
 //            TableUtils.createTable(connectionSource, AppDBBean.class);
-            TableUtils.createTable(connectionSource, AppDBBean.class);
+            TableUtils.createTable(connectionSource, DayDBBean.class);
 
         } catch (SQLException e){
             e.printStackTrace();

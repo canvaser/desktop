@@ -33,6 +33,15 @@ public class DayAddDBOpe extends BaseDBOpe<DayDBBean>{
         }
     }
 
+    public void add(long start,long end,String content,String musicUrl, boolean playMusic){
+        DayDBBean dayDBBean = new DayDBBean(start,end,content,musicUrl,playMusic);
+        try {
+            daoOpe.create(dayDBBean);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void delete(long id){
         DeleteBuilder deleteBuilder = daoOpe.deleteBuilder();
         Where where = deleteBuilder.where();

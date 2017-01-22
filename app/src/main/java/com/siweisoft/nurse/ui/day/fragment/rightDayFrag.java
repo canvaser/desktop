@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.siweisoft.app.R;
+import com.siweisoft.base.ui.id.BaseID;
 import com.siweisoft.base.ui.interf.view.OnAppItemLongClickListener;
 import com.siweisoft.base.ui.ope.BaseDAOpe;
 import com.siweisoft.base.ui.ope.BaseNetOpe;
@@ -16,11 +17,15 @@ import com.siweisoft.nurse.ui.day.adapter.LeftDayAdapter;
 import com.siweisoft.nurse.ui.day.bean.dbbean.DayDBBean;
 import com.siweisoft.nurse.ui.day.ope.dbope.DayAddDBOpe;
 import com.siweisoft.nurse.ui.day.ope.uiope.RightDayUIOpe;
+import com.siweisoft.util.LogUtil;
 import com.siweisoft.util.SheetDialogUtil;
 import com.siweisoft.util.data.FormatUtil;
+import com.siweisoft.util.media.VoiceUtil;
 import com.siweisoft.view.bottomdialogmenuview.BottomDialogMenuView;
 import com.siweisoft.view.refreshlayout.MaterialRefreshLayout;
 import com.siweisoft.view.refreshlayout.MaterialRefreshListener;
+
+import butterknife.OnLongClick;
 
 /**
  * Created by ${viwmox} on 2016-12-30.
@@ -55,6 +60,7 @@ public class RightDayFrag extends BaseNurseFragWithoutTitle<RightDayUIOpe,BaseNe
     public int getContainView() {
         return R.layout.frag_rightday;
     }
+
 
     @Override
     public BaseNurseOpes<RightDayUIOpe, BaseNetOpe, DayAddDBOpe, BaseDAOpe> getOpe() {

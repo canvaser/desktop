@@ -22,10 +22,26 @@ public class DayDBBean extends BaseDbBean{
     @DatabaseField(columnName = CENTENT_TXT)
     private String contentTxt;
 
+    public static final String PLAY_MUSIC ="playMusic";
+    @DatabaseField(columnName = PLAY_MUSIC)
+    private boolean playMusic;
+
+    public static final String MUSIC_URL ="musicUrl";
+    @DatabaseField(columnName = MUSIC_URL)
+    private String musicUrl;
+
     public DayDBBean(long startTime, long endTime, String contentTxt) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.contentTxt = contentTxt;
+    }
+
+    public DayDBBean(long startTime, long endTime, String contentTxt, String musicUrl, boolean playMusic) {
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.contentTxt = contentTxt;
+        this.musicUrl = musicUrl;
+        this.playMusic = playMusic;
     }
 
     public DayDBBean() {
@@ -53,5 +69,32 @@ public class DayDBBean extends BaseDbBean{
 
     public void setStartTime(long startTime) {
         this.startTime = startTime;
+    }
+
+    public String getMusicUrl() {
+        return musicUrl;
+    }
+
+    public void setMusicUrl(String musicUrl) {
+        this.musicUrl = musicUrl;
+    }
+
+    public boolean isPlayMusic() {
+        return playMusic;
+    }
+
+    public void setPlayMusic(boolean playMusic) {
+        this.playMusic = playMusic;
+    }
+
+    @Override
+    public String toString() {
+        return "DayDBBean{" +
+                "contentTxt='" + contentTxt + '\'' +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", playMusic=" + playMusic +
+                ", musicUrl='" + musicUrl + '\'' +
+                '}';
     }
 }

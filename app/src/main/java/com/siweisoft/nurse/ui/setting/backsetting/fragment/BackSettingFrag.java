@@ -1,15 +1,12 @@
 package com.siweisoft.nurse.ui.setting.backsetting.fragment;
 
-import android.app.backup.FullBackupDataOutput;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import butterknife.BindView;
+
 import com.siweisoft.app.R;
 import com.siweisoft.base.ui.interf.view.OnAppItemClickListener;
-import com.siweisoft.base.ui.ope.BaseDAOpe;
-import com.siweisoft.base.ui.ope.BaseDBOpe;
 import com.siweisoft.base.ui.ope.BaseNetOpe;
 import com.siweisoft.base.ui.ope.BaseNurseOpes;
 import com.siweisoft.constant.ValueConstant;
@@ -17,10 +14,9 @@ import com.siweisoft.nurse.ui.base.fragment.BaseNurseFrag;
 import com.siweisoft.nurse.ui.setting.backsetting.adapter.Backsettingadapter;
 import com.siweisoft.nurse.ui.setting.backsetting.ope.daope.BackSettingDAOpe;
 import com.siweisoft.nurse.ui.setting.backsetting.ope.uiope.BackSettingUIOpe;
-import com.siweisoft.nurse.ui.setting.bean.dbbean.BackUIDBBean;
-import com.siweisoft.nurse.ui.setting.ope.dbope.BackUIDBOpe;
+import com.siweisoft.nurse.ui.setting.setting.bean.dbbean.BackUIDBBean;
+import com.siweisoft.nurse.ui.setting.setting.ope.dbope.BackUIDBOpe;
 import com.siweisoft.util.IntentUtil;
-import com.siweisoft.util.LogUtil;
 
 /**
  * Created by summer on 2016/12/31 13:58.

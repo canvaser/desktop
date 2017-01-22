@@ -18,7 +18,7 @@ import com.siweisoft.nurse.ui.day.fragment.DayFrag;
 import com.siweisoft.nurse.ui.home.fragment.HomeFrag;
 import com.siweisoft.nurse.ui.index.adapter.HomePageAdapter;
 import com.siweisoft.nurse.ui.index.view.HomeBottomView;
-import com.siweisoft.nurse.ui.setting.fragment.SettingFrag;
+import com.siweisoft.nurse.ui.setting.setting.fragment.SettingFrag;
 import com.siweisoft.nurse.util.fragment.FragManager;
 
 import java.util.ArrayList;

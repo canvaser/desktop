@@ -15,6 +15,7 @@ import com.siweisoft.nurse.ui.app.bean.dabean.AppDABean;
 import com.siweisoft.nurse.ui.app.fragment.AppFrag;
 import com.siweisoft.nurse.ui.base.fragment.BaseNurseFrag;
 import com.siweisoft.nurse.ui.base.ope.BaseNurseUIOpe;
+import com.siweisoft.nurse.util.fragment.FragManager;
 
 import java.util.ArrayList;
 
@@ -45,6 +46,8 @@ public class AppsUIOpe extends BaseNurseUIOpe{
 
 
     public void initList(AppDABean appDABean, Fragment frag){
+        int current = viewPager.getCurrentItem();
+        FragManager.getInstance().getFragMaps();
         ArrayList<BaseFrg> fragments = new ArrayList<>();
         String[] keys= new String[appDABean.getData().keySet().size()];
         keys = appDABean.getData().keySet().toArray(keys);
@@ -57,5 +60,14 @@ public class AppsUIOpe extends BaseNurseUIOpe{
         }
         viewPager.setOffscreenPageLimit(appDABean.getData().size());
         viewPager.setAdapter(new AppsAdapter(frag.getChildFragmentManager(),context,fragments));
+        viewPager.setCurrentItem(current);
+    }
+
+    public AppsAdapter getAppsAdapter() {
+        return appsAdapter;
+    }
+
+    public ViewPager getViewPager() {
+        return viewPager;
     }
 }
