@@ -1,6 +1,7 @@
 package com.siweisoft.base.ui.ope;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import butterknife.ButterKnife;
@@ -10,15 +11,29 @@ import butterknife.ButterKnife;
  */
 public class BaseUIOpe extends BaseOpe{
 
-    protected View containerView;
+    protected View rootView;
 
-    public BaseUIOpe(Context context,View containerView) {
+    protected LayoutInflater inflater;
+
+    public BaseUIOpe(Context context,View rootView) {
         super(context);
-        this.containerView=containerView;
-        if(containerView==null){
+        inflater = LayoutInflater.from(context);
+        this.rootView = rootView;
+        if(rootView ==null){
             return;
         }
-        ButterKnife.bind(this,containerView);
+        ButterKnife.bind(this, rootView);
     }
 
+    /**
+     * 设置界面布局
+     * @return 界面布局id
+     */
+    protected  int onCreateContainerView(){
+        return -1;
+    }
+
+    public View getRootView() {
+        return rootView;
+    }
 }

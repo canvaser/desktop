@@ -1,6 +1,7 @@
 package com.siweisoft.base.ui.activity;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -39,12 +40,12 @@ public abstract class BaseUIActivity extends BaseActivity{
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         super.onCreate(savedInstanceState);
 //        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        setContentView(R.layout.layout_baseui_withouttitle);
-        //StatusBarUtil.getInstance().setStatusBarColorResId(activity, ColorConstant.COLOR_STATUS);
+        rootVG = (ViewGroup) LayoutInflater.from(activity).inflate(R.layout.layout_baseui,null);
+        setContentView(rootVG);
+        haveTitle(haveTitle());
+        StatusBarUtil.getInstance().setStatusBarColorResId(activity, ColorConstant.COLOR_STATUS);
         containerVG= (ViewGroup) findViewById(R.id.rl_base_container);
-        View rootV = getLayoutInflater().inflate(onCreateContainerView(), null);
-        containerVG.addView(rootV, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT));
-        rootVG= (ViewGroup) findViewById(R.id.ll_base_root);
+        containerVG.addView(getLayoutInflater().inflate(onCreateContainerView(), null), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT));
         ButterKnife.bind(activity);
     }
 
@@ -53,6 +54,20 @@ public abstract class BaseUIActivity extends BaseActivity{
      * @return 界面布局id
      */
     protected abstract int onCreateContainerView();
+
+
+    public boolean haveTitle(){
+        return true;
+    }
+
+    private void haveTitle(boolean have){
+        if(!have){
+            View view = findViewById(R.id.rl_base_titlecontainer);
+            ViewGroup vg = (ViewGroup) view.getParent();
+            vg.removeView(view);
+            rootVG.requestLayout();
+        }
+    }
 
 
     public boolean isFullScreen(){

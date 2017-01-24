@@ -25,6 +25,8 @@ public class BaseNurseOpes<A extends BaseNurseUIOpe,B extends BaseNetOpe,C exten
         this.baseDAOpe = baseDAOpe;
     }
 
+
+
     public D getBaseDAOpe() {
         return baseDAOpe;
     }

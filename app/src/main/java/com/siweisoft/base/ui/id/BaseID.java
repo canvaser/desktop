@@ -13,4 +13,6 @@ public class BaseID {
     public static final int ID_RIGHT = R.id.ftv_right;
 
     public static final int ID_CONTENT = R.id.frag_base_container;
+
+
 }

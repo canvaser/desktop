@@ -14,6 +14,7 @@ import com.siweisoft.base.ui.listener.BaseOnPagerChangeListener;
 import com.siweisoft.base.ui.ope.BaseUIOpe;
 import com.siweisoft.nurse.ui.app.fragment.AppsFrag;
 import com.siweisoft.nurse.ui.calendar.fragment.CalendarFrag;
+import com.siweisoft.nurse.ui.calendar.fragment.DayRecordFrag;
 import com.siweisoft.nurse.ui.day.fragment.DayFrag;
 import com.siweisoft.nurse.ui.home.fragment.HomeFrag;
 import com.siweisoft.nurse.ui.index.adapter.HomePageAdapter;
@@ -58,7 +59,7 @@ public class HomeUIOpe extends BaseUIOpe{
         fragments.add(new HomeFrag());
         fragments.add(new DayFrag());
         fragments.add(new AppsFrag());
-        fragments.add(new CalendarFrag());
+        fragments.add(new DayRecordFrag());
         fragments.add(new SettingFrag());
 
 

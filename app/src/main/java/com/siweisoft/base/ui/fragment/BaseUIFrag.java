@@ -41,7 +41,7 @@ public abstract class BaseUIFrag extends BaseFrg {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View group = (ViewGroup) inflater.inflate(getLayoutID(),null);
-        ViewGroup parent = (ViewGroup) group.findViewById(R.id.frag_base_container);
+        ViewGroup parent = (ViewGroup) group.findViewById(R.id.rl_base_container);
         View view = inflater.inflate(getContainView(), container, false);
         parent.addView(view,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         unbinder = ButterKnife.bind(this, group);

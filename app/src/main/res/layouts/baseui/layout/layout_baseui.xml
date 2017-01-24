@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     android:id="@+id/frag_base_root">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -10,33 +11,13 @@
     android:orientation="vertical"
     android:clickable="true"
 >
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
         <RelativeLayout
-            android:background="@color/white"
-            android:layout_marginTop="@dimen/dimens_base_title"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <RelativeLayout
-            android:id="@+id/frag_base_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
-
-            <ImageView
-                android:layout_centerInParent="true"
-                android:src="@drawable/icon_gou"
-                android:alpha="0.5"
-                android:id="@+id/iv_info"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/frag_base_titlecontainer"
+            android:id="@+id/rl_base_titlecontainer"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimens_base_title">
             <include
@@ -44,7 +25,24 @@
                 layout="@layout/item_title"
                 />
         </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:alpha="0.5"
+                android:layout_centerInParent="true"
+                android:id="@+id/iv_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"/>
+        <RelativeLayout
+            android:id="@+id/rl_base_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
 
-    </RelativeLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>
     </RelativeLayout>

@@ -76,7 +76,8 @@ public class BitmapUtil {
         }else{
             Glide.with(context).load(uri).asBitmap().fitCenter().diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
         }
-        LogUtil.E("setBg:"+uri);
+        LogUtil.E("setBg:"+uri+(new File(uri).exists()));
+
         return true;
     }
 

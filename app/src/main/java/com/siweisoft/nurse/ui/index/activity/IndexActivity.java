@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.siweisoft.app.R;
+import com.siweisoft.base.ui.activity.BaseUIActivity;
 import com.siweisoft.base.ui.activity.BaseUIWithOutTitleActivity;
 import com.siweisoft.base.ui.interf.view.OnAppItemLongClickListener;
 import com.siweisoft.base.ui.interf.view.OnAppItemSelectListener;
@@ -26,7 +27,7 @@ import butterknife.OnClick;
 /**
  * Created by ${viwmox} on 2016-11-08.
  */
-public class IndexActivity extends BaseUIWithOutTitleActivity implements OnAppItemSelectListener,OnAppItemLongClickListener{
+public class IndexActivity extends BaseUIActivity implements OnAppItemSelectListener,OnAppItemLongClickListener{
 
 
     HomeUIOpe homeUIOpe;
@@ -35,6 +36,10 @@ public class IndexActivity extends BaseUIWithOutTitleActivity implements OnAppIt
 
     HomeNetOpe homeNetOpe;
 
+    @Override
+    public boolean haveTitle() {
+        return false;
+    }
 
     @Override
     protected void onStart() {

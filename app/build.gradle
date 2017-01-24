@@ -56,6 +56,7 @@ android {
                     'src/main/res/layouts/chart',
                     'src/main/res/layouts/zxing',
                     'src/main/res/layouts/voip',
+                    'src/main/res/layouts/calendar',
 
 
                     'src/main/res/layouts/desktop',
@@ -84,6 +85,7 @@ android {
                     'src/main/res/drawables/user',
                     'src/main/res/drawables/chart',
                     'src/main/res/drawables/voip',
+                    'src/main/res/drawables/calendar',
 
                     'src/main/res/anims/bottommenu',
                     'src/main/res/anims/in',
@@ -113,4 +115,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     compile files('libs/zxing.jar')
+
+    compile 'cn.bmob.android:bmob-sdk:3.5.0'
+    compile 'cn.bmob.android:http-legacy:1.0'
 }

@@ -22,7 +22,7 @@ public class WelcomeActivity extends BaseUIWithOutTitleActivity{
             public void run() {
                 startActivity(new Intent(activity, IndexActivity.class));
             }
-        },3000);
+        },500);
     }
 
     @Override
