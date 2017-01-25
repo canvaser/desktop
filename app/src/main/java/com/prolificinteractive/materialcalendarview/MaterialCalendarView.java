@@ -33,6 +33,7 @@ import com.prolificinteractive.materialcalendarview.format.MonthArrayTitleFormat
 import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
 import com.prolificinteractive.materialcalendarview.format.WeekDayFormatter;
 import com.siweisoft.app.R;
+import com.siweisoft.constant.ValueConstant;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -407,7 +408,7 @@ public class MaterialCalendarView extends ViewGroup {
         topbar.setOrientation(LinearLayout.HORIZONTAL);
         topbar.setClipChildren(false);
         topbar.setClipToPadding(false);
-        addView(topbar, new LayoutParams(1));
+        addView(topbar, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ValueConstant.DIMEN_1*30));
 
         buttonPast.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         topbar.addView(buttonPast, new LinearLayout.LayoutParams(0, LayoutParams.MATCH_PARENT, 1));

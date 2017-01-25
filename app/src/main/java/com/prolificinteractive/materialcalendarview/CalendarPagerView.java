@@ -226,7 +226,7 @@ abstract class CalendarPagerView extends ViewGroup implements View.OnClickListen
         final int measureTileHeight = specHeightSize / getRows();
 
         //Just use the spec sizes
-        setMeasuredDimension(specWidthSize, specHeightSize*7/10);
+        setMeasuredDimension(specWidthSize, specHeightSize);
 
         int count = getChildCount();
 
@@ -239,7 +239,7 @@ abstract class CalendarPagerView extends ViewGroup implements View.OnClickListen
             );
 
             int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(
-                    measureTileHeight*7/10,
+                    measureTileHeight,
                     MeasureSpec.EXACTLY
             );
 
