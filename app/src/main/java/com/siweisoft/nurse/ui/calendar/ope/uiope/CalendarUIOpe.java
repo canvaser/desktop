@@ -12,6 +12,8 @@ import android.view.View;
 import com.joybar.librarycalendar.adapter.CalendarViewPagerAdapter;
 import com.joybar.librarycalendar.fragment.CalendarViewFragment;
 import com.joybar.librarycalendar.fragment.CalendarViewPagerFragment;
+import com.prolificinteractive.materialcalendarview.CalendarMode;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.siweisoft.app.R;
 import com.siweisoft.base.ui.interf.OnFinishListener;
 import com.siweisoft.constant.ValueConstant;
@@ -24,6 +26,7 @@ import com.siweisoft.view.ItemDecoration.MyItemDecoration;
 import com.siweisoft.view.ItemDecoration.MyItemDecoration2;
 import com.siweisoft.view.refreshlayout.MaterialRefreshLayout;
 
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -34,10 +37,8 @@ import butterknife.BindView;
 public class CalendarUIOpe extends BaseNurseUIOpe {
 
 
-    CalendarViewPagerFragment calendarViewPagerFragment;
-
-    @BindView(R.id.rl_calendar)
-    View canlendarV;
+    @BindView(R.id.calendarView)
+    MaterialCalendarView calendarPickerView;
 
     @BindView(R.id.recycle)
     RecyclerView recyclerView;
@@ -58,29 +59,37 @@ public class CalendarUIOpe extends BaseNurseUIOpe {
         getRightTV().getLayoutParams().height= ValueConstant.DIMEN_1*25;
         getRightTV().requestLayout();
         getRightTV().setBackgroundResource(R.drawable.drawable_esccol);
-        if(calendarViewPagerFragment!=null){
-            FragmentUtil.getInstance().removeFrag((FragmentActivity) context,calendarViewPagerFragment ,calendarViewPagerFragment.getClass().getSimpleName());
-            calendarViewPagerFragment=null;
-        }
-        calendarViewPagerFragment=CalendarViewPagerFragment.newInstance(true);
-        FragmentUtil.getInstance().addToContaier((FragmentActivity) context,calendarViewPagerFragment , R.id.rl_calendar);
+
+        Calendar nextYear = Calendar.getInstance();
+        nextYear.add(Calendar.YEAR, 1);
+        getCalendarPickerView().state().edit()
+                .setFirstDayOfWeek(Calendar.WEDNESDAY)
+                .setCalendarDisplayMode(CalendarMode.MONTHS)
+                .commit();
+
+    }
+
+    public void coll(){
+        getCalendarPickerView().state().edit()
+                .setFirstDayOfWeek(Calendar.WEDNESDAY)
+                .setCalendarDisplayMode(CalendarMode.WEEKS)
+                .commit();
+
+    }
+
+    public void expand(){
+        getCalendarPickerView().state().edit()
+                .setFirstDayOfWeek(Calendar.WEDNESDAY)
+                .setCalendarDisplayMode(CalendarMode.MONTHS)
+                .commit();
+
     }
 
     public void initTitle(int year,int month){
         getMidTV().setText(""+year+"-"+month);
     }
 
-    public void iniListener(CalendarViewPagerFragment.OnPageChangeListener pageChangeListener,final CalendarViewFragment.OnDateCancelListener onDateCancelListener, final CalendarViewFragment.OnDateClickListener onDateClickListener){
-        calendarViewPagerFragment.setOnFinishListener(new OnFinishListener() {
-            @Override
-            public void onFinish(Object o) {
-                CalendarViewPagerAdapter adapter = (CalendarViewPagerAdapter) o;
-                adapter.setOnDateClickListener(onDateClickListener);
-                adapter.setOnDateCancelListener(onDateCancelListener);
-            }
-        });
-        calendarViewPagerFragment.setOnPageChangeListener(pageChangeListener);
-    }
+
 
 
     public void initList(List<DayBean> data){
@@ -88,21 +97,20 @@ public class CalendarUIOpe extends BaseNurseUIOpe {
         recyclerView.setAdapter(new CalendarListAdapter(context,data));
     }
 
-    public View getCanlendarV() {
-        return canlendarV;
-    }
+
 
     public RecyclerView getRecyclerView() {
         return recyclerView;
     }
 
-    public CalendarViewPagerFragment getCalendarViewPagerFragment() {
-        return calendarViewPagerFragment;
-    }
 
     @Nullable
     @Override
     public MaterialRefreshLayout getRefreshLayout() {
         return refreshLayout;
+    }
+
+    public MaterialCalendarView getCalendarPickerView() {
+        return calendarPickerView;
     }
 }

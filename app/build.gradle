@@ -76,6 +76,8 @@ android {
                     'src/main/res/values/chart',
                     'src/main/res/values/zxing',
                     'src/main/res/values/voip',
+                    'src/main/res/values/calendar',
+                    'src/main/res/values/calen',
 
                     'src/main/res/drawables/base',
                     'src/main/res/drawables/dialog',

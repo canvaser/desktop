@@ -32,7 +32,6 @@ public class CalendarViewPagerAdapter extends FragmentStatePagerAdapter{
     public Fragment getItem(int position) {
         int year = getYearByPosition(position);
         int month = getMonthByPosition(position);
-        LogUtil.E(position+""+year+""+month);
         CalendarViewFragment fragment = CalendarViewFragment.newInstance(year,month,isChoiceModelSingle);
         fragment.setOnDateCancelListener(onDateCancelListener);
         fragment.setOnDateClickListener(onDateClickListener);

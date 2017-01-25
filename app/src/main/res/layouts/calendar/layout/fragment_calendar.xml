@@ -81,8 +81,8 @@
 
     <GridView
         android:id="@+id/gv_calendar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="center"
         android:horizontalSpacing="4dp"
         android:listSelector="#00000000"
