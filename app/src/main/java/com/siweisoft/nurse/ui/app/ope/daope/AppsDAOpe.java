@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 
 import com.siweisoft.base.ui.interf.OnNetFinishWithObjInter;
 import com.siweisoft.base.ui.ope.BaseDAOpe;
+import com.siweisoft.constant.ValueConstant;
 import com.siweisoft.nurse.ui.app.bean.dabean.AppDABean;
 import com.siweisoft.nurse.ui.app.bean.dbbean.AppDBBean;
 import com.siweisoft.nurse.ui.app.bean.dbbean.AppGroupDBBean;
@@ -13,6 +14,7 @@ import com.siweisoft.nurse.ui.app.ope.dbope.AppsDBOpe;
 import com.siweisoft.nurse.ui.app.ope.dbope.AppsGroupDBOpe;
 import com.siweisoft.util.LogUtil;
 import com.siweisoft.util.PackageUtil;
+import com.siweisoft.view.chart.linearchat.bean.databean.Value;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,17 +62,18 @@ public class AppsDAOpe extends BaseDAOpe{
         appsGroupDBOpe.get();
         ArrayList<AppDBBean> sysList = appsDBOpe.get("系统");
         ArrayList<AppDBBean> userList = appsDBOpe.get("用户");
-        if(sysList.size()==0){
+        if(sysList.size()==0 || ValueConstant.IS_FROM_SYS){
             final ArrayList<AppDBBean> finalUserList = userList;
             getApps("系统",new OnNetFinishWithObjInter() {
                 @Override
                 public void onNetFinish(Object o) {
                     ArrayList<AppDBBean> appDBBeen= (ArrayList<AppDBBean>) o;
                     appsDBOpe.add(appDBBeen);
-                    if(finalUserList.size()==0){
+                    if(true){
                         getApps("用户",new OnNetFinishWithObjInter() {
                             @Override
                             public void onNetFinish(Object o) {
+                                ValueConstant.IS_FROM_SYS= false;
                                 ArrayList<AppDBBean> appDBBeen= (ArrayList<AppDBBean>) o;
                                 appsDBOpe.add(appDBBeen);
                                 appDABean.getData().put("系统", appsDBOpe.get("系统"));

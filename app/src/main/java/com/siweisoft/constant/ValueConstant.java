@@ -161,6 +161,8 @@ public class ValueConstant {
 
 
     public static  String cookieFromResponse;
+
+    public static  boolean IS_FROM_SYS = false ;
 }
 
 

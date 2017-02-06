@@ -95,9 +95,9 @@ public class BitmapUtil {
 //      x.image().bind(imageView,uri.toString(),imageOptions);
         Glide.clear(imageView);
         if(uri.toLowerCase().endsWith(".gif")){
-            Glide.with(context).load(uri).asGif().fitCenter().placeholder(drawable).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
+            Glide.with(context).load(uri).asGif().fitCenter().placeholder(R.drawable.icon_loading).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
         }else{
-            Glide.with(context).load(uri).asBitmap().fitCenter().placeholder(drawable).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
+            Glide.with(context).load(uri).asBitmap().fitCenter().placeholder(R.drawable.icon_loading).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
         }
         LogUtil.E("setBg:"+uri+(new File(uri).exists()));
 
@@ -168,7 +168,7 @@ public class BitmapUtil {
         if(uri.toLowerCase().endsWith(".gif")){
             Glide.with(context).load(uri).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
         }else{
-            Glide.with(context).load(uri).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL).into(new SimpleTarget<Bitmap>() {
+            Glide.with(context).load(uri).asBitmap().placeholder(R.drawable.icon_loading).diskCacheStrategy(DiskCacheStrategy.ALL).into(new SimpleTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                     ViewGroup.LayoutParams params = imageView.getLayoutParams();

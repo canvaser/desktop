@@ -11,6 +11,7 @@ import com.siweisoft.base.ui.interf.view.OnAppItemClickListener;
 import com.siweisoft.nurse.ui.calendar.bean.netbean.DayBean;
 import com.siweisoft.nurse.ui.calendar.bean.uibean.CanlendarUIBean;
 import com.siweisoft.util.BitmapUtil;
+import com.siweisoft.util.ScreenUtil;
 import com.siweisoft.util.StringUtil;
 
 import java.util.List;
@@ -45,7 +46,7 @@ public class CalendarListAdapter extends AppRecycleAdapter{
         if(data.get(position).getImage()==null){
 
         }else{
-            BitmapUtil.getInstance().setBgWithDefault(context,canlendarUIBean.getImageIV(),data.get(position).getImage().getFileUrl());
+            BitmapUtil.getInstance().setFitBg(context, ScreenUtil.w,canlendarUIBean.getImageIV(),data.get(position).getImage().getFileUrl());
         }
         canlendarUIBean.getRootV().setTag(R.id.position,position);
         canlendarUIBean.getRootV().setTag(R.id.data,data.get(position));

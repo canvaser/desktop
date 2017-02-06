@@ -79,8 +79,12 @@ public class AppFrag extends BaseNurseFragWithoutTitle<AppUIOpe,BaseNetOpe,AppsD
                         break;
                     case "卸载":
                         IntentUtil.getInstance().uninstall(activity,getOpe().getBaseDAOpe().getItem().getPackageName());
+                        getOpe().getBaseDBOpe().delete(getOpe().getBaseDAOpe().getData().get(position).getId());
+                        AppsFrag appsFrag1 = (AppsFrag) FragManager.getInstance().getFragMaps().get(2).get(FragManager.getInstance().getFragMaps().get(index).size()-1);
+                        appsFrag1.getData();
                         break;
                     case "刷新":
+                        ValueConstant.IS_FROM_SYS= true;
                         AppsFrag appsFrag2 = (AppsFrag) FragManager.getInstance().getFragMaps().get(2).get(FragManager.getInstance().getFragMaps().get(index).size()-1);
                         appsFrag2.getData();
                         break;
