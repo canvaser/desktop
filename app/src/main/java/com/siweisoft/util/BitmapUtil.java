@@ -3,7 +3,9 @@ package com.siweisoft.util;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.View;
@@ -33,6 +35,7 @@ public class BitmapUtil {
 
     private static BitmapUtil instance;
 
+    private static Drawable drawable;
 
     private BitmapUtil(){
 
@@ -41,6 +44,7 @@ public class BitmapUtil {
     public static BitmapUtil getInstance(){
         if(instance== null){
             instance=new BitmapUtil();
+            drawable = new ColorDrawable(Color.BLACK);
         }
         return instance;
     }
@@ -91,9 +95,9 @@ public class BitmapUtil {
 //      x.image().bind(imageView,uri.toString(),imageOptions);
         Glide.clear(imageView);
         if(uri.toLowerCase().endsWith(".gif")){
-            Glide.with(context).load(uri).asGif().fitCenter().placeholder(R.drawable.icon_head).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
+            Glide.with(context).load(uri).asGif().fitCenter().placeholder(drawable).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
         }else{
-            Glide.with(context).load(uri).asBitmap().fitCenter().placeholder(R.drawable.icon_head).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
+            Glide.with(context).load(uri).asBitmap().fitCenter().placeholder(drawable).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
         }
         LogUtil.E("setBg:"+uri+(new File(uri).exists()));
 
