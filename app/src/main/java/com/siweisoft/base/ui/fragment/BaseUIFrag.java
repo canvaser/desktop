@@ -61,6 +61,8 @@ public abstract class BaseUIFrag extends BaseFrg {
             ImageView imageView = (ImageView) getView().findViewById(R.id.iv_info);
             if(imageView!=null&&backUIDBBean.getBackUrl()!=null){
                 BitmapUtil.getInstance().setBg(activity,imageView,backUIDBBean.getBackUrl());
+            }else if(imageView!=null&&backUIDBBean.getBackUrl()==null){
+                imageView.setImageResource(R.drawable.bg);
             }
         }
     }

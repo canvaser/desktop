@@ -43,6 +43,17 @@ public class AppsDBOpe extends BaseDBOpe<AppDBBean>{
         }
     }
 
+    public void removeAll(){
+        DeleteBuilder deleteBuilder = daoOpe.deleteBuilder();
+        try {
+            Where where = deleteBuilder.where();
+            where.isNotNull(AppDBBean.ID);
+            deleteBuilder.delete();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public ArrayList<AppDBBean> get(){
         ArrayList<AppDBBean> list = new ArrayList<>();
         try {
