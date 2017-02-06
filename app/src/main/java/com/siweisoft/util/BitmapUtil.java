@@ -81,6 +81,25 @@ public class BitmapUtil {
         return true;
     }
 
+    public boolean setBgWithDefault(Context context,ImageView imageView,String uri){
+        if (uri == null) {
+            return false;
+        }
+        if(uri.startsWith("http://") || uri.startsWith("https://")){
+
+        }
+//      x.image().bind(imageView,uri.toString(),imageOptions);
+        Glide.clear(imageView);
+        if(uri.toLowerCase().endsWith(".gif")){
+            Glide.with(context).load(uri).asGif().fitCenter().placeholder(R.drawable.icon_head).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
+        }else{
+            Glide.with(context).load(uri).asBitmap().fitCenter().placeholder(R.drawable.icon_head).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
+        }
+        LogUtil.E("setBg:"+uri+(new File(uri).exists()));
+
+        return true;
+    }
+
 
     public boolean setBgXY(Context context,ImageView imageView,String uri){
         if (uri == null) {

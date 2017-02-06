@@ -5,11 +5,14 @@ import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 
 import com.siweisoft.base.ui.interf.OnFinishListener;
+import com.siweisoft.base.ui.interf.OnProgressInterf;
 import com.siweisoft.base.ui.ope.BaseNetOpe;
 import com.siweisoft.nurse.ui.calendar.bean.netbean.DayBean;
+import com.siweisoft.nurse.ui.image.bean.dabean.PicBean;
 import com.siweisoft.util.LogUtil;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -104,6 +107,65 @@ public class CalendarNetOpe extends BaseNetOpe {
                 if(onFinishListener!=null){
                     onFinishListener.onFinish(e);
                 }
+            }
+        });
+    }
+
+
+    private void uploadImage(DayBean dayBean, String url, final OnFinishListener onFinishListener){
+        File file = new File(url);
+        dayBean.setImage(new BmobFile(file));
+        LogUtil.E(url+""+file.exists());
+        dayBean.getImage().upload(new UploadFileListener() {
+            @Override
+            public void done(BmobException e) {
+                if(onFinishListener!=null){
+                    onFinishListener.onFinish(e);
+                }
+            }
+        });
+    }
+
+    public int i=0;
+
+    public void addRecord(final String txt, final ArrayList<PicBean> datas, final OnProgressInterf onProgressInterf){
+        if(i==0){
+            onProgressInterf.onStart(null);
+            onProgressInterf.onProgess((i+1)+"/"+datas.size());
+        }
+        if(datas.size()<=i){
+            if(onProgressInterf!=null){
+                onProgressInterf.onEnd(null);
+                return;
+            }
+        }
+        addRecord(txt, datas.get(i).getPath(), new OnFinishListener() {
+            @Override
+            public void onFinish(Object o) {
+                i++;
+                onProgressInterf.onProgess((i+1)+"/"+datas.size());
+                addRecord(txt,datas,onProgressInterf);
+            }
+        });
+    }
+
+    public void addRecord(String txt, String url,final OnFinishListener onFinishListener2){
+        final DayBean dayBean = new DayBean();
+        dayBean.setContent(txt);
+        dayBean.setYear(Calendar.getInstance().get(Calendar.YEAR));
+        dayBean.setMonth(Calendar.getInstance().get(Calendar.MONTH)+1);
+        dayBean.setDay(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+        uploadImage(dayBean, url, new OnFinishListener() {
+            @Override
+            public void onFinish(Object o) {
+                dayBean.save(new SaveListener<String>() {
+                    @Override
+                    public void done(String s, BmobException e) {
+                        if(onFinishListener2!=null){
+                            onFinishListener2.onFinish(s);
+                        }
+                    }
+                });
             }
         });
     }

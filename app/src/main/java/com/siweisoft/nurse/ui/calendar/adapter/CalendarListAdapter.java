@@ -45,7 +45,7 @@ public class CalendarListAdapter extends AppRecycleAdapter{
         if(data.get(position).getImage()==null){
 
         }else{
-            BitmapUtil.getInstance().setBg(context,canlendarUIBean.getImageIV(),data.get(position).getImage().getFileUrl());
+            BitmapUtil.getInstance().setBgWithDefault(context,canlendarUIBean.getImageIV(),data.get(position).getImage().getFileUrl());
         }
         canlendarUIBean.getRootV().setTag(R.id.position,position);
         canlendarUIBean.getRootV().setTag(R.id.data,data.get(position));

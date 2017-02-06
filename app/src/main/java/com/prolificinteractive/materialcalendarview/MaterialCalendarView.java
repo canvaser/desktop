@@ -34,6 +34,7 @@ import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
 import com.prolificinteractive.materialcalendarview.format.WeekDayFormatter;
 import com.siweisoft.app.R;
 import com.siweisoft.constant.ValueConstant;
+import com.siweisoft.util.LogUtil;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -1616,7 +1617,7 @@ public class MaterialCalendarView extends ViewGroup {
         setMeasuredDimension(
                 //We clamp inline because we want to use un-clamped versions on the children
                 clampSize(measuredWidth, widthMeasureSpec),
-                clampSize(measuredHeight, heightMeasureSpec)
+                clampSize(measuredHeight/2, heightMeasureSpec)
         );
 
         int count = getChildCount();
@@ -1632,7 +1633,7 @@ public class MaterialCalendarView extends ViewGroup {
             );
 
             int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(
-                    p.height * measureTileHeight,
+                    p.height * measureTileHeight/2,
                     MeasureSpec.EXACTLY
             );
 

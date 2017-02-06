@@ -1,28 +1,26 @@
 package com.siweisoft.nurse.ui.calendar.fragment;
 
-import android.content.Intent;
-import android.provider.Settings;
+import android.os.Bundle;
 import android.view.View;
 
 import com.siweisoft.app.R;
 import com.siweisoft.base.ui.id.BaseID;
 import com.siweisoft.base.ui.interf.OnFinishListener;
-import com.siweisoft.base.ui.ope.BaseDAOpe;
+import com.siweisoft.base.ui.interf.OnProgressInterf;
 import com.siweisoft.base.ui.ope.BaseDBOpe;
-import com.siweisoft.base.ui.ope.BaseNetOpe;
 import com.siweisoft.base.ui.ope.BaseNurseOpes;
 import com.siweisoft.constant.ValueConstant;
 import com.siweisoft.nurse.ui.base.fragment.BaseNurseFrag;
-import com.siweisoft.nurse.ui.base.ope.BaseNurseUIOpe;
 import com.siweisoft.nurse.ui.calendar.ope.daope.AddDayRecordDAOpe;
 import com.siweisoft.nurse.ui.calendar.ope.netope.CalendarNetOpe;
 import com.siweisoft.nurse.ui.calendar.ope.uiope.AddDayRecordUIOpe;
+import com.siweisoft.nurse.ui.image.bean.dabean.PicBean;
+import com.siweisoft.nurse.ui.image.fragment.ImagesFrag;
 import com.siweisoft.nurse.util.fragment.FragManager;
-import com.siweisoft.util.BitmapUtil;
-import com.siweisoft.util.IntentUtil;
 import com.siweisoft.util.LoadUtil;
 import com.siweisoft.util.LogUtil;
-import com.siweisoft.util.dialog.DialogUtil;
+
+import java.util.ArrayList;
 
 import butterknife.OnClick;
 
@@ -41,7 +39,12 @@ public class AddDayRecordFrag extends BaseNurseFrag<AddDayRecordUIOpe,CalendarNe
         return baseNurseOpes;
     }
 
-    @OnClick({BaseID.ID_RIGHT,R.id.iv_image})
+    @Override
+    public void onBackClick(View v) {
+
+    }
+
+    @OnClick({BaseID.ID_RIGHT,BaseID.ID_BACK})
     public void onClick(View v){
         switch (v.getId()){
             case BaseID.ID_RIGHT:
@@ -49,39 +52,50 @@ public class AddDayRecordFrag extends BaseNurseFrag<AddDayRecordUIOpe,CalendarNe
                 if(!getOpe().getBaseNurseUIOpe().isFit()){
                     return;
                 }
-                LoadUtil.getInstance().onStartLoading(activity,AddDayRecordFrag.class.getName());
-                getOpe().getBaseNetOpe().addRecord(getOpe().getBaseNurseUIOpe().getAddET().getText().toString(), getOpe().getBaseDAOpe().getUrl(),new OnFinishListener() {
+                //LoadUtil.getInstance().onStartLoading(activity,AddDayRecordFrag.class.getName());
+                getOpe().getBaseNurseUIOpe().getMidTV().setText("上传中...");
+                getOpe().getBaseNetOpe().addRecord(getOpe().getBaseNurseUIOpe().getAddET().getText().toString(), getOpe().getBaseDAOpe().getPicBeen(),new OnProgressInterf() {
                     @Override
-                    public void onFinish(Object o) {
+                    public void onStart(Object o) {
+                        getOpe().getBaseNurseUIOpe().getMidTV().setText("上传中");
+                    }
+
+                    @Override
+                    public void onProgess(Object o) {
+                        getOpe().getBaseNurseUIOpe().getMidTV().setText("上传中"+o);
+                    }
+
+                    @Override
+                    public void onEnd(Object o) {
                         LogUtil.E(System.currentTimeMillis());
                         DayRecordFrag dayRecordFrag = (DayRecordFrag) FragManager.getInstance().getFragMaps().get(3).get(0);
                         getOpe().getBaseNurseUIOpe().getAddET().setText("");
                         getOpe().getBaseDAOpe().setUrl(null);
-                        getOpe().getBaseNurseUIOpe().getImageIV().setImageDrawable(null);
+                        getOpe().getBaseNurseUIOpe().initList(null);
                         dayRecordFrag.getOpe().getBaseNurseUIOpe().getViewPager().setCurrentItem(1);
-                        LoadUtil.getInstance().onStopLoading(AddDayRecordFrag.class.getName());
+                        //LoadUtil.getInstance().onStopLoading(AddDayRecordFrag.class.getName());
+                        getOpe().getBaseNurseUIOpe().getMidTV().setText("上传完成");
                     }
                 });
                 break;
-            case R.id.iv_image:
-                IntentUtil.getInstance().photoShowFromphone(fragment, ValueConstant.CODE_REQUSET);
+            case BaseID.ID_BACK:
+                FragManager.getInstance().startFragmentForResult(activity.getSupportFragmentManager(),index,new ImagesFrag(),new Bundle(),ValueConstant.CODE_REQUSET);
+                LogUtil.E(index);
                 break;
         }
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
-            case ValueConstant.CODE_REQUSET:
-                if(data==null || data.getData()==null){
-                    return ;
-                }
-                getOpe().getBaseDAOpe().setUrl(data.getData());
-                BitmapUtil.getInstance().setBg(activity,getOpe().getBaseNurseUIOpe().getImageIV(),getOpe().getBaseDAOpe().getUrl());
-                break;
+    public void onResult(int req, Bundle bundle) {
+        super.onResult(req, bundle);
+        if(bundle.getSerializable(ValueConstant.DATA_DATA)==null && !(bundle.getSerializable(ValueConstant.DATA_DATA) instanceof ArrayList)){
+            return;
         }
+        ArrayList<PicBean> picBeen = (ArrayList<PicBean>) bundle.getSerializable(ValueConstant.DATA_DATA);
+        getOpe().getBaseDAOpe().setPicBeen(picBeen);
+        getOpe().getBaseNurseUIOpe().initList(getOpe().getBaseDAOpe().getPicBeen());
     }
+
 
     @Override
     public int getContainView() {

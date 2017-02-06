@@ -54,6 +54,7 @@ public  class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, AppDBBean.class);
             TableUtils.createTable(connectionSource, AppGroupDBBean.class);
             TableUtils.createTable(connectionSource, BackUIDBBean.class);
+            TableUtils.createTable(connectionSource, DayDBBean.class);
         } catch (SQLException e) {
             e.printStackTrace();
         }
