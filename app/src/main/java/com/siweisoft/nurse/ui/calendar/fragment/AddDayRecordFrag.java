@@ -54,6 +54,23 @@ public class AddDayRecordFrag extends BaseNurseFrag<AddDayRecordUIOpe,CalendarNe
                 }
                 //LoadUtil.getInstance().onStartLoading(activity,AddDayRecordFrag.class.getName());
                 getOpe().getBaseNurseUIOpe().getMidTV().setText("上传中...");
+                if(getOpe().getBaseDAOpe().getPicBeen()==null || getOpe().getBaseDAOpe().getPicBeen().size()==0){
+                    getOpe().getBaseNetOpe().addRecordtext(getOpe().getBaseNurseUIOpe().getAddET().getText().toString(), new OnFinishListener() {
+                        @Override
+                        public void onFinish(Object o) {
+                            LogUtil.E(System.currentTimeMillis());
+                            DayRecordFrag dayRecordFrag = (DayRecordFrag) FragManager.getInstance().getFragMaps().get(3).get(0);
+                            getOpe().getBaseNurseUIOpe().getAddET().setText("");
+                            getOpe().getBaseDAOpe().setUrl(null);
+                            getOpe().getBaseNurseUIOpe().initList(null);
+                            dayRecordFrag.getOpe().getBaseNurseUIOpe().getViewPager().setCurrentItem(1);
+                            //LoadUtil.getInstance().onStopLoading(AddDayRecordFrag.class.getName());
+                            getOpe().getBaseNurseUIOpe().getMidTV().setText("上传完成");
+                        }
+                    });
+                    return;
+                }
+                getOpe().getBaseNetOpe().i=0;
                 getOpe().getBaseNetOpe().addRecord(getOpe().getBaseNurseUIOpe().getAddET().getText().toString(), getOpe().getBaseDAOpe().getPicBeen(),new OnProgressInterf() {
                     @Override
                     public void onStart(Object o) {

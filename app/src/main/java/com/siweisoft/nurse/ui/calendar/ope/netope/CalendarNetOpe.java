@@ -69,23 +69,18 @@ public class CalendarNetOpe extends BaseNetOpe {
         });
     }
 
-    public void addRecord(String txt, Uri url, final OnFinishListener onFinishListener){
+    public void addRecordtext(String txt, final OnFinishListener onFinishListener){
         final DayBean dayBean = new DayBean();
         dayBean.setContent(txt);
         dayBean.setYear(Calendar.getInstance().get(Calendar.YEAR));
         dayBean.setMonth(Calendar.getInstance().get(Calendar.MONTH)+1);
         dayBean.setDay(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-        uploadImage(dayBean, url, new OnFinishListener() {
+        dayBean.save(new SaveListener<String>() {
             @Override
-            public void onFinish(Object o) {
-                dayBean.save(new SaveListener<String>() {
-                    @Override
-                    public void done(String s, BmobException e) {
-                        if(onFinishListener!=null){
-                            onFinishListener.onFinish(s);
-                        }
-                    }
-                });
+            public void done(String s, BmobException e) {
+                if(onFinishListener!=null){
+                    onFinishListener.onFinish(s);
+                }
             }
         });
     }
@@ -131,19 +126,19 @@ public class CalendarNetOpe extends BaseNetOpe {
     public void addRecord(final String txt, final ArrayList<PicBean> datas, final OnProgressInterf onProgressInterf){
         if(i==0){
             onProgressInterf.onStart(null);
-            onProgressInterf.onProgess((i+1)+"/"+datas.size());
+            onProgressInterf.onProgess((i+1)+"/"+datas==null?0:datas.size());
         }
-        if(datas.size()<=i){
+        if(datas!=null && datas.size()<=i){
             if(onProgressInterf!=null){
                 onProgressInterf.onEnd(null);
                 return;
             }
         }
-        addRecord(txt, datas.get(i).getPath(), new OnFinishListener() {
+        addRecord(txt, datas==null?null:datas.get(i).getPath(), new OnFinishListener() {
             @Override
             public void onFinish(Object o) {
                 i++;
-                onProgressInterf.onProgess((i+1)+"/"+datas.size());
+                onProgressInterf.onProgess((i+1)+"/"+datas==null?0:datas.size());
                 addRecord(txt,datas,onProgressInterf);
             }
         });
